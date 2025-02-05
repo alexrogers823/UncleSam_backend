@@ -10,5 +10,8 @@ pygments = "*"
 
 [dev-packages]
 
+[scripts]
+start = "cd uncle_sam && python manage.py runserver"
+
 [requires]
 python_version = "3.12"
