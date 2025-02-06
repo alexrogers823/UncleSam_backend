@@ -22,7 +22,7 @@ def test_create_debt_object(api_client, debt_payload) -> None:
 def test_update_debt_object(api_client, debt_payload) -> None:
     #create
     response_create = api_client.post('/debts/', data=debt_payload, format='json')
-    debt_id = response_create.data["id"]
+    debt_id = response_create.data['id']
     logger.info(f'Successfully created debt with ID {debt_id}')
     assert response_create.status_code == 201
     assert response_create.data['title'] == debt_payload['title']

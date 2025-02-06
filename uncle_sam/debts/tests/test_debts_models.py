@@ -1,10 +1,4 @@
 import pytest
-from django.core.exceptions import ValidationError
-
-
-@pytest.mark.unit
-def test_hello_world():
-   assert "hello_world" == "hello_world"
 
 
 @pytest.mark.django_db
