@@ -12,7 +12,7 @@ pygments = "*"
 pytest-django = "*"
 
 [scripts]
-start = "cd uncle_sam/ && python manage.py runserver"
+start = "python uncle_sam/manage.py runserver"
 
 [requires]
 python_version = "3.12"
