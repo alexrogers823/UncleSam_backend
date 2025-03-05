@@ -21,7 +21,7 @@ class ArchiveList(APIView):
 
 class ArchiveChartList(APIView):
     def arrange_chart_data(self, serializer_data):
-        chart_types = ["Debt", "Saving", "Item"]
+        chart_types = ["Debts", "Savings", "Items"]
         def get_chart_data(chart_name):
             return filter(lambda x: x["type"] == chart_name, serializer_data)
         
