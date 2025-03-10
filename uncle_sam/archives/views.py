@@ -23,19 +23,20 @@ class ArchiveChartList(APIView):
     def arrange_chart_data(self, serializer_data):
         chart_types = ["Debt", "Saving", "Item"]
         def get_chart_data(chart_name):
-            return filter(lambda x: x["type"] == chart_name, serializer_data)
+            titles = set([archive["title"] for archive in serializer_data if archive["type"] == chart_name])
+
+            return map(lambda instance: {
+                "title": instance,
+                "history": map(lambda h: {
+                    "amount": h["amount"],
+                    "date": h["updated_date"]
+                }, filter(lambda t: t["title"] == instance, filter(lambda chart: chart["type"] == chart_name, serializer_data)))
+            }, titles)
+            
         
         arranged = map(lambda chart_name: {
             "type": chart_name,
-            "data": map(lambda instance: {
-                "title": instance["title"],
-                "history": [
-                    {
-                        "amount": instance["amount"],
-                        "date": instance["updated_date"]
-                    }
-                ]
-            }, get_chart_data(chart_name))
+            "data": get_chart_data(chart_name)
         }, chart_types)
 
         return arranged
